@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add/Update Project</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+</head>
+<body class="bg-dark text-light">
+<div class="container mt-4">
+    <h1>Add / Update Project</h1>
+    <form method="post">
+        <div class="mb-2">
+            <label>Project:</label>
+            <input class="form-control" type="text" name="project" required>
+        </div>
+        <div class="mb-2">
+            <label>Done:</label>
+            <input class="form-control" type="text" name="tasks_done">
+        </div>
+        <div class="mb-2">
+            <label>Todo:</label>
+            <input class="form-control" type="text" name="tasks_todo">
+        </div>
+        <div class="mb-2">
+            <label>Meta notes:</label>
+            <input class="form-control" type="text" name="meta_notes">
+        </div>
+        <div class="mb-2">
+            <label>Plan:</label>
+            <input class="form-control" type="text" name="plan">
+        </div>
+        <div class="mb-2">
+            <label>Note (history):</label>
+            <input class="form-control" type="text" name="note">
+        </div>
+        <button class="btn btn-success mt-3" type="submit">Save</button>
+        <a href="{{ url_for('index') }}" class="btn btn-secondary mt-3">Cancel</a>
+    </form>
+</div>
+</body>
+</html>

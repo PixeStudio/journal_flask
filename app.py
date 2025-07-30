@@ -1,6 +1,10 @@
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, app, render_template, request, redirect, url_for
 import sqlite3
 from datetime import datetime
+
+app = Flask(__name__)
+
+DB = 'projects.db'
 
 def get_db_connection():
     conn = sqlite3.connect(DB)
@@ -40,4 +44,17 @@ def add():
         meta_notes=excluded.meta_notes,
         plan=excluded.plan
         ''', (project, now, tasks_done, tasks_todo, meta_notes,plan))
+
+        @app.route('history/<project>')
+        def history(project):
+            conn = get_db_connection()
+            history = conn.execute(
+                'SELECT * FROM projects_history WHERE project = ? ORDER BY update_date DESC', 
+                (project,)
+            ).fetchall()
+            conn.close()
+            return render_template('history.html', project=project, history=history)
+
+if __name__=='__main__':
+    app.run(debug=True)
 
